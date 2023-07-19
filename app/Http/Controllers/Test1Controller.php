@@ -54,45 +54,6 @@ class Test1Controller extends Controller
 
     }
 
-    public function batchApiRequests()
-    {
-        $baseUrl = 'https://overpass-api.de/api/';
-        $batchQueryParts = [];
-
-        $radius_=[3,5,10];
-        $zipCodes_=[40212,60311];
-        $i=0;
-        foreach ($zipCodes_ as $zipCode) {
-            for($r=0;$r<=2;$r++) {
-                $radius = $radius_[$r] * 1000; // Convert km to meters
-
-                // Add each query for the current zip code and radius to the $batchQueryParts array
-                if($i==0) {
-                    $query = "[out:json];(rel[boundary=postal_code][postal_code='{$zipCode}'];rel(around:{$radius})[boundary=postal_code][postal_code]);";
-                } else {
-                    $query = "(rel[boundary=postal_code][postal_code='{$zipCode}'];rel(around:{$radius})[boundary=postal_code][postal_code];);";
-                }
-                $batchQueryParts[] = $query;
-                $i++;
-
-            }
-        }
-        $batchQuery = implode('union', $batchQueryParts) . 'out;';
-        dd($batchQuery);
-        $endpoint = 'interpreter';
-        $client = new Client();
-        $response = $client->get("{$baseUrl}{$endpoint}", [
-            'query' => [
-                'data' => $batchQuery,
-            ],
-        ]);
-
-        $data = json_decode($response->getBody(), true);
-        dd($data);
-        // Process the data and return the results as needed
-        // ...
-    }
-
     public function fillZipCodesFromExcel(Request $request)
     {
         $file = $request->file('excelFile');
