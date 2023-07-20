@@ -17,6 +17,6 @@ use App\Http\Controllers\Test1Controller;
 Route::get('/', function () {
     return view('home');
 });
+Route::get('overpassApi/zip-codes/{zipCode}/{radius}', [Test1Controller::class, 'getSurroundingZipCodesOverpassApi'])->name('overpass_get_zipCodes');
 // not needed anymore
-// Route::get('overpassApi/zip-codes/{zipCode}/{radius}', [Test1Controller::class, 'getSurroundingZipCodesOverpassApi'])->name('overpass_get_zipCodes');
 // Route::post('excel/fill-zip-codes', [Test1Controller::class, 'fillZipCodesFromExcel'])->name('fill_zipCodes_from_excel');
