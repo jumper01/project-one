@@ -31,7 +31,9 @@
             </div>
             <div class="col-2">
                 <!-- Button to trigger the process -->
-                <button onclick="processExcelFile()">Process Excel File</button>
+                <button onclick="processExcelFile()" type="button" class="btn btn-primary btn-lg">Process Excel
+                    File</button>
+
             </div>
         </div>
         <br />
@@ -42,10 +44,6 @@
             </div>
         </div>
     </div>
-
-
-
-
 
     <script>
     function processExcelFile() {
