@@ -111,7 +111,7 @@
 
                 if (zipCode && !isNaN(zipCode)) {
                     console.log(zipCode)
-                    const distances = [3, 5, 10]; // Distances to query
+                    const distances = [15]; // Distances to query
 
                     // Array to store all the async API requests
                     const apiRequests = distances.map(radius => fetchSurroundingZipCodes(zipCode, radius));
